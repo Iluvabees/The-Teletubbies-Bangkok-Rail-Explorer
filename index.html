@@ -4,6 +4,20 @@
 <!-- GitHub Pages-ready static demo. Historical 2023 Siam records are real; other time series are demonstration data. -->
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#06111b">
+<script>
+// Keep browser URLs clean when visitors arrive from a link with referral parameters.
+(() => {
+  try {
+    const current = new URL(window.location.href);
+    if ((current.searchParams.get('utm_source') || '').toLowerCase() === 'chatgpt.com') {
+      current.searchParams.delete('utm_source');
+      window.history.replaceState(window.history.state, '', current.pathname + current.search + current.hash);
+    }
+  } catch (error) {
+    // URL display cleanup is optional; the website remains usable if unsupported.
+  }
+})();
+</script>
 <title>Bangkok Rail Explorer | ICT324 Milestone 2</title>
 <style>
 :root{--ink:#0d2330;--navy:#071621;--navy2:#0d2634;--sea:#35c9a5;--sea2:#a5f5d8;--paper:#f5f7f6;--line:#dce4e4;--muted:#5c7077;--white:#fff;--border:#2c4350}
