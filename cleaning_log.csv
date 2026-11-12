@@ -1,0 +1,13 @@
+﻿step,why,rows_affected
+Dropped 'No.' column,"Row number only, carries no information",0
+Removed exact duplicate rows,Same record listed twice would double-count passengers,0
+"Trimmed spaces, made station codes upper-case",'a6 ' and 'A6' must be the same station,0
+Removed rows with missing / non-numeric passenger counts,Cannot compute a daily total without both values,0
+Removed negative passenger counts,Passenger counts cannot be below zero,0
+Converted Thai Buddhist years to Christian years,Python dates need Christian years (2567 -> 2024),0
+Removed rows with unreadable dates,A record without a date cannot be placed on the timeline,0
+Removed station-days with 0 passengers,"Every station shows 0 on these days: data not reported, not real demand",112
+Fixed mislabeled dates (moved first copy to the missing day before),A date appeared twice with different counts while the previous day was missing,16
+Kept one record per station per day,Conflicting duplicates for the same station and date,0
+Added English station names (A1-A8),Source names are Thai; the website is in English,12296
+"Flagged extreme days (kept, not removed)",Real events (e.g. free-fare days) - flagged so they can be explained,0

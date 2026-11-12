@@ -1,0 +1,5 @@
+model,precision,precision_sd,recall,recall_sd,f1,f1_sd,roc_auc,roc_auc_sd
+Baseline (majority class),0.5026,0.0002,1.0,0.0,0.6689,0.0002,0.5,0.0
+Logistic Regression,0.8691,0.0118,0.8983,0.0145,0.8834,0.0104,0.9425,0.0072
+Decision Tree,0.8805,0.011,0.9429,0.0042,0.9106,0.0056,0.9464,0.0064
+Random Forest,0.9017,0.0119,0.9464,0.0076,0.9235,0.008,0.9753,0.0029
