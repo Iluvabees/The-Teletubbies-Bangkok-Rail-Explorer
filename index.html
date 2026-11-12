@@ -149,6 +149,19 @@
 
 .m3ScrollTip{display:none}
 @media(max-width:820px){.m3ScrollTip{display:block;margin:0;padding:9px 12px;white-space:nowrap;color:#53736c;background:#e9f5f0;font-size:12px;font-weight:700}}
+
+/* Airport Rail Link live-CSV explorer: user-selectable station shortcuts. */
+.railRealPicker{border:1px solid #285c59;background:linear-gradient(135deg,#0c2b33,#123d3d);border-radius:15px;padding:16px 18px;margin:18px 0 14px;color:#e5faf4}
+.railRealPickerTitle{display:flex;align-items:center;gap:12px;margin-bottom:13px}
+.railRealPickerTitle strong{display:block;font-size:14px;letter-spacing:-.01em}
+.railRealPickerTitle small{display:block;color:#a2c6c4;font-size:11px;line-height:1.5;margin-top:2px}
+.railRealDot{width:12px;height:12px;background:#50dcb9;box-shadow:0 0 0 5px rgba(80,220,185,.12);border-radius:50%;flex:0 0 auto}
+.railRealChoices{display:flex;flex-wrap:wrap;gap:7px}
+.railRealChoices button{border:1px solid #41786f;border-radius:9px;padding:8px 11px;min-height:38px;color:#c6f5e8;background:#1b4a4a;font-size:11px;font-weight:700;line-height:1.35;cursor:pointer}
+.railRealChoices button:hover,.railRealChoices button:focus-visible{background:#2f7668;color:#fff;border-color:#73d7b7}
+.demoFoot a{color:#72ddbf}
+@media(max-width:800px){.railRealPicker{padding:13px 12px;margin:14px 0 10px}.railRealChoices{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:7px}.railRealChoices button{white-space:nowrap;min-height:44px;scroll-snap-align:start;flex:0 0 auto}.railRealPickerTitle strong{font-size:13px}}
+@media print{.railRealPicker{display:none!important}}
 </style>
 </head>
 <body>
@@ -156,20 +169,33 @@
 <main>
 <section class="hero" id="top"><div class="heroIn"><div><span class="eyebrow"><span class="dot"></span> ICT324 • Milestone 03 • The Teletubbies</span><h1>Every station<br>has <em>a story.</em></h1><p>A web-based visual analytics experience for exploring historical passenger activity across Bangkok’s urban railway network—one station, one date range and one insight at a time.</p><div class="heroActions"><a class="primary" href="#experience">Explore the interaction <span>↗</span></a><a class="secondary" href="#method">How we’ll build it</a></div><div class="heroMeta"><div><strong>Rangsit University</strong>International College</div><div><strong>Data Warehousing & Data Mining</strong>ICT324</div><div><strong>Approach</strong>Historical analytics + OLAP</div></div></div><div class="heroRight"><div class="heroWindow"><span class="heroSmall">Our product in three actions</span><h3>From the whole network to one station’s history.</h3><p>Not another static graph. An exploratory web interface that connects geography and time.</p><div class="heroStep"><span class="n">01</span><div><strong>Explore the railway network</strong><small>See lines, search stations and inspect the system.</small></div></div><div class="heroStep"><span class="n">02</span><div><strong>Select and focus a station</strong><small>Tap once to select; tap again for a smooth zoom.</small></div></div><div class="heroStep"><span class="n">03</span><div><strong>Explore a historical period</strong><small>Drill from years into months, weeks and days where source data allows.</small></div></div></div></div></div></section>
 <section class="section" id="overview"><div class="sectionHead"><div><span class="kicker">01 / Problem & goal</span><h2>Make public railway data easy to explore, not just download.</h2></div><p>Historical ridership data is useful, but its value is harder to see when it is scattered across files, time periods and different levels of detail.</p></div><div class="grid3"><article class="tile"><span class="index">THE PROBLEM</span><h3>Fragmented information</h3><p>Station locations and passenger counts come from different official datasets. Some statistics are station-level; others are line- or operator-level.</p></article><article class="tile"><span class="index">OUR SOLUTION</span><h3>A connected web explorer</h3><p>Link the rail map, station details and historical timeline. Let visitors navigate through space and time with clear, responsive controls.</p></article><article class="tile"><span class="index">OUR PRINCIPLE</span><h3>No invented detail</h3><p>Show a metric only at its available granularity. A monthly total stays monthly; organization-level figures are not presented as station counts.</p></article></div><div class="rq"><span>Proposed research question</span><p>How can historical ridership information for Bangkok’s urban railway network be integrated and explored interactively across stations and time while preserving differences in data coverage?</p></div></section>
-<section class="demoSection" id="experience"><div class="demoInner"><span class="kicker">02 / Interaction demonstration</span><h2>Explore the experience.</h2><p class="sub">Use the rail map below. Select a station by clicking it once, then click again to zoom and open its timeline. Search is another shortcut. <strong>For <strong>Siam (CEN)</strong>, the timeline now uses <strong>real monthly 2023 records</strong> from Bangkok’s official statistics. Other stations still use clearly labeled illustrative data.</strong></p><div class="demoShell"><div class="demoTop"><span><strong>Concept prototype</strong> / station → historical focus</span><div class="miniTags"><i>Interactive map</i><i>Two-step station focus</i><i>Siam: 2022–24 mixed-source demo</i></div></div><div class="mobileStationQuick" aria-label="Try a station on mobile">
+<section class="demoSection" id="experience"><div class="demoInner"><span class="kicker">02 / Real data + interaction demonstration</span><h2>Explore the experience.</h2><p class="sub">Select a station on the map (or use a shortcut) to explore its history. <strong>Airport Rail Link A1–A8 now shows real daily arrivals and departures from the cleaned DRT file (Jan 2022–Mar 2026).</strong> Siam BTS retains its official monthly 2023 series; other lines are clearly labeled as demonstrations.</p><div class="railRealPicker" aria-label="Real Airport Rail Link station history">
+  <div class="railRealPickerTitle"><span class="railRealDot"></span><div><strong>Explore real Airport Rail Link data</strong><small>Eight stations · daily passenger arrivals + departures · Jan 2022–Mar 2026 · cleaned DRT extract</small></div></div>
+  <div class="railRealChoices">
+    <button type="button" data-station-launch="A1">A1 · Suvarnabhumi</button>
+    <button type="button" data-station-launch="A2">A2 · Lat Krabang</button>
+    <button type="button" data-station-launch="A3">A3 · Ban Thap Chang</button>
+    <button type="button" data-station-launch="A4">A4 · Hua Mak</button>
+    <button type="button" data-station-launch="A5">A5 · Ramkhamhaeng</button>
+    <button type="button" data-station-launch="A6">A6 · Makkasan</button>
+    <button type="button" data-station-launch="A7">A7 · Ratchaprarop</button>
+    <button type="button" data-station-launch="A8">A8 · Phaya Thai</button>
+  </div>
+</div>
+<div class="demoShell"><div class="demoTop"><span><strong>Concept prototype</strong> / station → historical focus</span><div class="miniTags"><i>Interactive map</i><i>Two-step station focus</i><i>Airport Rail Link: real daily data</i></div></div><div class="mobileStationQuick" aria-label="Try a station on mobile">
   <span>Quick explore</span>
   <button type="button" data-station-launch="CEN">Siam <small>2023 real</small></button>
-  <button type="button" data-station-launch="A6">Makkasan <small>demo</small></button>
+  <button type="button" data-station-launch="A6">Makkasan <small>DRT real</small></button>
   <button type="button" data-station-launch="E4">Asok <small>demo</small></button>
 </div>
 <div class="demoBody" id="demoBody"><div class="mapCol"><div class="mapViewport" id="mapViewport"><svg id="railSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672.44 1672.44" role="img" aria-label="Interactive Bangkok rail map based on a railway network schematic"></svg></div><div class="mapFloat"><form class="mapSearch" id="findForm"><input id="stationInput" list="stationList" placeholder="Search station / code" aria-label="Search station"><datalist id="stationList"></datalist><button type="submit">Find</button></form></div><div class="zoomBar"><button type="button" id="zoomIn" aria-label="Zoom in">+</button><button type="button" id="zoomOut" aria-label="Zoom out">−</button><button type="button" id="mapReset" aria-label="Reset map">⌂</button></div><div class="mapToast" id="mapToast" aria-live="polite"></div>
-<div id="selectionChip" class="selectionChip hidden" aria-live="polite"><span id="selectionName">Selected station</span><button id="chipOpen" type="button">View history</button><button id="chipClear" type="button" aria-label="Deselect station">×</button></div><div class="mapHint">Click once to select → click again to open history. On phones, pinch to zoom and drag to pan. On desktop, use the mouse wheel. The map is a schematic (not to scale).</div></div><aside class="detailCol"><div id="introDetail"><span class="overline">Your next move</span><h3>Choose a station.</h3><p>Explore the network map. Our final product will connect each operational station to historical data where it is available.</p><div class="emptyAction"><p>Try <strong>Siam</strong> for official 2023 data:</p><button type="button" class="quickBtn" data-station="A6">Makkasan</button><button type="button" class="quickBtn" data-station="CEN">Siam · 3-year history</button><button type="button" class="quickBtn" data-station="E4">Asok</button><button type="button" class="quickBtn" data-station="BL22">Sukhumvit</button></div></div><div id="selectedDetail" class="hidden"><div class="drawerTop"><span class="drawerKicker">STATION EXPLORER</span><button type="button" id="closeStation" class="drawerClose" aria-label="Close station history and deselect">× Close</button></div><span class="overline" id="detailStage">Station selected</span><h3 id="stationHeading">Makkasan</h3><p id="stationMeta">Station code · available data to be verified</p><div class="statusLine"><span id="dataStatus">Data status: choose a station</span><span id="stageLabel">First selection</span></div><button class="openBtn" type="button" id="openHistory">Zoom in & open station history →</button><div id="timelinePanel" class="hidden"><div class="kpiRow"><div class="demoKpi"><small id="totalCaption">Selected-period journeys</small><b id="demoTotal">—</b></div><div class="demoKpi"><small id="averageCaption">Average per period</small><b id="demoAvg">—</b></div></div><div class="timelineBox"><div class="head"><b>Historical timeline <span id="chartStatus" class="chartStatusTag">[DEMO]</span></b><small id="timeLabel">Jan 2022 – Dec 2024</small></div><div class="timeTabs" id="timeTabs"><button class="active" type="button" data-grain="month">Month</button><button type="button" data-grain="week">Week</button><button type="button" data-grain="day">Day</button><button type="button" data-grain="year">Year</button></div><svg id="timeSvg" class="timeChart" viewBox="0 0 440 176" role="img" aria-label="Passenger history trend, real for Siam in 2023"></svg><div class="focusStrip"><div class="focusStripHead"><b>Focus period</b><span id="focusText">2022 – 2024</span></div>
-<div class="focusSizes" id="focusSizes"><button type="button" data-window="3">3 months</button><button type="button" data-window="12">1 year</button><button type="button" data-window="36" class="active">All 3 years</button></div>
+<div id="selectionChip" class="selectionChip hidden" aria-live="polite"><span id="selectionName">Selected station</span><button id="chipOpen" type="button">View history</button><button id="chipClear" type="button" aria-label="Deselect station">×</button></div><div class="mapHint">Click once to select → click again to open history. On phones, pinch to zoom and drag to pan. On desktop, use the mouse wheel. The map is a schematic (not to scale).</div></div><aside class="detailCol"><div id="introDetail"><span class="overline">Your next move</span><h3>Choose a station.</h3><p>Airport Rail Link stations now use real cleaned DRT daily records. Siam BTS has official monthly data for 2023; other stations remain demo-only until their records are integrated.</p><div class="emptyAction"><p>Try <strong>Makkasan</strong> for daily DRT data or <strong>Siam</strong> for official 2023 monthly data:</p><button type="button" class="quickBtn" data-station="A6">Makkasan</button><button type="button" class="quickBtn" data-station="CEN">Siam · 2023 verified</button><button type="button" class="quickBtn" data-station="E4">Asok</button><button type="button" class="quickBtn" data-station="BL22">Sukhumvit</button></div></div><div id="selectedDetail" class="hidden"><div class="drawerTop"><span class="drawerKicker">STATION EXPLORER</span><button type="button" id="closeStation" class="drawerClose" aria-label="Close station history and deselect">× Close</button></div><span class="overline" id="detailStage">Station selected</span><h3 id="stationHeading">Makkasan</h3><p id="stationMeta">Station code · available data to be verified</p><div class="statusLine"><span id="dataStatus">Data status: choose a station</span><span id="stageLabel">First selection</span></div><button class="openBtn" type="button" id="openHistory">Zoom in & open station history →</button><div id="timelinePanel" class="hidden"><div class="kpiRow"><div class="demoKpi"><small id="totalCaption">Selected-period journeys</small><b id="demoTotal">—</b></div><div class="demoKpi"><small id="averageCaption">Average per period</small><b id="demoAvg">—</b></div></div><div class="timelineBox"><div class="head"><b>Historical timeline <span id="chartStatus" class="chartStatusTag">[DEMO]</span></b><small id="timeLabel">Jan 2022 – Dec 2024</small></div><div class="timeTabs" id="timeTabs"><button class="active" type="button" data-grain="month">Month</button><button type="button" data-grain="week">Week</button><button type="button" data-grain="day">Day</button><button type="button" data-grain="year">Year</button></div><svg id="timeSvg" class="timeChart" viewBox="0 0 440 176" role="img" aria-label="Passenger history trend, real for Siam in 2023"></svg><div class="focusStrip"><div class="focusStripHead"><b>Focus period</b><span id="focusText">2022 – 2024</span></div>
+<div class="focusSizes" id="focusSizes"><button type="button" data-window="3">3 months</button><button type="button" data-window="12">1 year</button><button type="button" data-window="36" class="active">3 years</button><button type="button" data-window="51" id="allRailData" class="hidden">All available</button></div>
 <label class="scrubberLabel" for="focusPosition">Move through time <span id="scrubberValue">Dec 2024</span></label>
 <input class="focusScrubber" type="range" id="focusPosition" min="0" max="35" value="35" aria-label="Focus period end month" />
-<div class="focusTickRow"><span>Jan 2022</span><span>Jan 2023</span><span>Dec 2024</span></div></div>
+<div class="focusTickRow"><span id="focusTickStart">Jan 2022</span><span id="focusTickMiddle">Jan 2023</span><span id="focusTickEnd">Dec 2024</span></div></div>
 <div class="hintText" id="timelineHint">The slider moves one selected window; the buttons change its length.</div>
-<div id="stationSource" class="stationSource" aria-live="polite"></div></div></div></div></aside></div><div class="demoFoot"><strong>Data status:</strong> Siam BTS (CEN): official station-level monthly observations for <strong>2023</strong>. The <strong>2022 and 2024 Siam values are simulated</strong> solely to demonstrate a three-year timeline; other stations are also simulated. Official source: Bangkok Metropolitan Administration, Table 2-7. The map is a schematic. Station-level daily data is currently available for the Airport Rail Link only.</div></div></div></section>
+<div id="stationSource" class="stationSource" aria-live="polite"></div></div></div></div></aside></div><div class="demoFoot"><strong>Data sources:</strong> Airport Rail Link A1–A8 uses the <a href="cleaned_data.csv">processed DRT daily station dataset</a> (2022–Mar 2026), summed as <strong>arrivals + departures</strong> — not unique journeys. The cleaning script removed 112 zero-count source rows (14 dates per station) and adjusted 16 duplicate-date records: those interpretations remain subject to source verification. Siam BTS CEN uses <strong>official 2023 monthly totals</strong>; Siam 2022/2024 and all other unconnected lines remain <strong>simulated demo data</strong>. The railway map is a schematic.</div></div></div></section>
 <section class="section" id="sources"><div class="sectionHead"><div><span class="kicker">03 / Approved data sources</span><h2>Built around Thailand Open Government Data.</h2></div><p>All planned primary data sources are on data.go.th, one of the approved sources for this course. The exact usable records and line-level coverage still need file-level verification.</p></div><div class="dataGrid"><article class="dataCard"><span class="type">01 — Network geography</span><h3>Station and line master</h3><p>Department of Rail Transport station codes, Thai/English names, coordinates and operational status. Intended as the geographic reference table.</p><a href="https://data.go.th/th/dataset/rail_station" target="_blank" rel="noopener">View official dataset ↗</a></article><article class="dataCard"><span class="type">02 — Station statistics</span><h3>Passenger arrivals / departures</h3><p>Station-level passenger counts and dates. Audited in Milestone 3: covers the Airport Rail Link (8 stations), daily, Jan 2022 – Mar 2026.</p><a href="https://data.go.th/th/dataset/drt2566_02" target="_blank" rel="noopener">View official dataset ↗</a></article><article class="dataCard"><span class="type">03 — Network statistics</span><h3>Rail system ridership</h3><p>Historical daily, monthly and yearly operator/system passenger totals. These support broader trends, but must not be mislabeled as individual station counts.</p><a href="https://data.go.th/th/dataset/stat_pass_rail" target="_blank" rel="noopener">View official dataset ↗</a></article></div><div class="verifiedSiam"><strong>Already integrated for this prototype:</strong> Siam BTS station — 12 actual monthly passenger-journey totals from 2023. <a href="https://webportal.bangkok.go.th/public/user_files_editor/130/BMA%20STATISTIC/BMA_Stat_66.pdf" target="_blank" rel="noopener">Bangkok Statistics 2023, Table 2-7 ↗</a> <span>Source agency: Bangkok Metropolitan Administration; monthly records only.</span></div><div class="coverageNote"><strong>Data quality rule:</strong> We will document which lines, stations, dates and granularities exist before publishing metrics. Missing detail will be marked “not available,” not filled with invented values.</div></section>
 <section class="section" id="method"><div class="sectionHead"><div><span class="kicker">04 / Method & research plan</span><h2>From raw public data to interactive insight.</h2></div><p>Our core method uses data cleaning, integration, OLAP-style aggregation and visual exploration, following CRISP-DM.</p></div><div class="pipe"><article><span>01</span><h3>Understand</h3><p>Define user questions about where and when passengers travel.</p></article><article><span>02</span><h3>Collect</h3><p>Retrieve official files and audit station, line and date coverage.</p></article><article><span>03</span><h3>Prepare</h3><p>Clean names, keys, date formats, gaps and aggregation levels.</p></article><article><span>04</span><h3>Explore</h3><p>Implement station drill-down, time roll-up and filter comparisons.</p></article><article><span>05</span><h3>Evaluate</h3><p>Validate totals, missing-data behavior and the user experience.</p></article></div><div class="methodNote"><div><h3>Data mining track</h3><p style="margin-top:7px">Milestone 3: high-demand day classification is now the core mining task (see Progress). Station clustering is the next step.</p></div><p>With enough comparable station histories, we can group stations by demand patterns and compare clustering approaches such as K-means, hierarchical clustering and DBSCAN. We would evaluate clusters with appropriate unlabeled-data metrics such as silhouette score, not classification accuracy. This extension will not replace the interactive historical website.</p></div></section>
 
@@ -211,11 +237,11 @@
   <li>Random 10-fold CV mixes future and past days. When we train only on the past and test on the future, F1 is 0.734 (AUC 0.901), 0.189 lower than random CV.</li>
   <li>The dataset extract analyzed here contains Airport Rail Link station records only; other networks are not yet integrated.</li>
   <li>Public holidays are not a feature yet, so long weekends can be misread.</li>
-  <li>The map timeline does not read this real data yet.</li></ul></div>
+  <li>Airport Rail Link station timelines now use the cleaned DRT daily records; BTS/MRT remain demo-only except for Siam 2023.</li></ul></div>
  <div><h4>How we’ll fix it</h4><ul>
   <li>Report time-based validation next to the 10-fold results.</li>
   <li>Add a Thai public-holiday calendar as a feature.</li>
-  <li>Connect the cleaned Airport Rail Link data to the station timeline.</li>
+  <li>Extend real-data coverage to other rail lines, and verify the assumptions behind removed zero-count rows and adjusted dates.</li>
   <li>Search for station-level files for BTS and MRT; then cluster stations by demand pattern.</li></ul></div>
 </div>
 </section>
@@ -223,7 +249,7 @@
 <section class="section" id="team"><div class="sectionHead"><div><span class="kicker">07 / Project group</span><h2>Meet The Teletubbies.</h2></div><p><strong>The Teletubbies</strong> · ICT324 · Rangsit University International College · Academic Year 2026</p></div><div class="teamGrid"><article class="person"><div class="avatar">KZL</div><h3>Kyaw Zaw Lin</h3><p>Student ID 6702599</p></article><article class="person"><div class="avatar">AKT</div><h3>Aung Khant Tun</h3><p>Student ID 6702977</p></article><article class="person"><div class="avatar">AKSN</div><h3>Aung Kaung Sett Naing</h3><p>Student ID 6703015</p></article></div></section>
 </main>
 <footer class="footer"><div class="footerIn"><div><strong>Bangkok Rail Explorer</strong><span> · The Teletubbies · ICT324 Milestone 3</span></div><span>Public data. Clear coverage. Better exploration.</span></div></footer>
-<section class="printOnly printPaper" aria-hidden="true"><div class="printBanner">RANGSIT UNIVERSITY INTERNATIONAL COLLEGE · ICT324 · MILESTONE 2 PROJECT PROPOSAL</div><h1>Bangkok Rail Explorer: Interactive Historical Analytics Across Urban Railway Lines</h1><p><strong>Team: The Teletubbies</strong> · Kyaw Zaw Lin (6702599) · Aung Khant Tun (6702977) · Aung Kaung Sett Naing (6703015)</p><h2>Problem statement</h2><p>Historical Bangkok rail passenger information is distributed across public datasets with different geographic and time coverage. Traditional tables and separate charts are difficult to explore across lines, stations, days, weeks and months. Our project proposes an interactive web application that connects a railway network map to historical ridership visualizations while clearly showing which levels of detail are supported by the source records.</p><h2>Research question</h2><p>How can historical ridership information for Bangkok’s urban railway network be integrated and explored interactively across stations and time while preserving differences in data coverage?</p><div class="printCols"><div><h2>Dataset</h2><p>Primary sources: Thailand Open Government Data (data.go.th), Department of Rail Transport (DRT).</p><ul><li>Rail station/line master: line code, station code, names, latitude/longitude, operating status.</li><li>Station-level rail passengers: date, station, arrival and departure counts; actual line coverage to be audited.</li><li>Rail system passengers: daily/monthly/yearly system or operator totals, where station detail is unavailable.</li></ul><p>Only real government data will be used for reported findings. We will verify record count, date range, gaps and granularity.</p></div><div><h2>Planned technique</h2><p>Data warehousing, preprocessing and OLAP-style historical exploration using time hierarchies and station/line dimensions. Our CRISP-DM workflow: understand, audit, clean, integrate, analyze, evaluate and deploy. A station clustering extension (K-means, hierarchical, DBSCAN) is under consideration, subject to instructor approval and comparable station histories.</p><h2>Expected contribution</h2><p>A map-first interactive historical dashboard supporting station selection, smooth zooming, time drill-down, trends and comparisons; a documented method for integrating government data without hiding missing detail; and interpretable historical insights for the public and transport researchers.</p></div></div><div class="printFooter"><strong>Official datasets:</strong> data.go.th/th/dataset/rail_station · data.go.th/th/dataset/drt2566_02 · data.go.th/th/dataset/stat_pass_rail<br><strong>Project status:</strong> Concept and interaction prototype prepared; data audit and full integration remain planned work.</div></section>
+<section class="printOnly printPaper" aria-hidden="true"><div class="printBanner">RANGSIT UNIVERSITY INTERNATIONAL COLLEGE · ICT324 · MILESTONE 2 PROJECT PROPOSAL</div><h1>Bangkok Rail Explorer: Interactive Historical Analytics Across Urban Railway Lines</h1><p><strong>Team: The Teletubbies</strong> · Kyaw Zaw Lin (6702599) · Aung Khant Tun (6702977) · Aung Kaung Sett Naing (6703015)</p><h2>Problem statement</h2><p>Historical Bangkok rail passenger information is distributed across public datasets with different geographic and time coverage. Traditional tables and separate charts are difficult to explore across lines, stations, days, weeks and months. Our project proposes an interactive web application that connects a railway network map to historical ridership visualizations while clearly showing which levels of detail are supported by the source records.</p><h2>Research question</h2><p>How can historical ridership information for Bangkok’s urban railway network be integrated and explored interactively across stations and time while preserving differences in data coverage?</p><div class="printCols"><div><h2>Dataset</h2><p>Primary sources: Thailand Open Government Data (data.go.th), Department of Rail Transport (DRT).</p><ul><li>Rail station/line master: line code, station code, names, latitude/longitude, operating status.</li><li>Station-level rail passengers: date, station, arrival and departure counts; actual line coverage to be audited.</li><li>Rail system passengers: daily/monthly/yearly system or operator totals, where station detail is unavailable.</li></ul><p>Only real government data will be used for reported findings. We will verify record count, date range, gaps and granularity.</p></div><div><h2>Planned technique</h2><p>Data warehousing, preprocessing and OLAP-style historical exploration using time hierarchies and station/line dimensions. Our CRISP-DM workflow: understand, audit, clean, integrate, analyze, evaluate and deploy. A station clustering extension (K-means, hierarchical, DBSCAN) is under consideration, subject to instructor approval and comparable station histories.</p><h2>Expected contribution</h2><p>A map-first interactive historical dashboard with real Airport Rail Link daily ridership, station selection, time drill-down, trends and comparisons; a documented method for integrating government data without hiding missing detail; and interpretable historical insights for the public and transport researchers.</p></div></div><div class="printFooter"><strong>Official datasets:</strong> data.go.th/th/dataset/rail_station · data.go.th/th/dataset/drt2566_02 · data.go.th/th/dataset/stat_pass_rail<br><strong>Project status:</strong> Concept and interaction prototype prepared; data audit and full integration remain planned work.</div></section>
 <script>
 (function(){
   const root=document.getElementById('mapViewport'), svg=document.getElementById('railSvg');
@@ -241,6 +267,43 @@
   function el(name,props={}){const o=document.createElementNS(NS,name);for(let [k,v] of Object.entries(props))o.setAttribute(k,String(v));return o}
   function note(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2500)}
   function isReal(){return !!selected&&selected.code==='CEN'}
+  // Phaya Thai is a shared interchange on the schematic, marked N2-A8.
+  function arlCode(st=selected){if(!st)return null;const code=st.code==='N2-A8'?'A8':st.code;return /^A[1-8]$/.test(code)?code:null}
+  function isARL(){return Boolean(arlCode())}
+  let arlDaily=null, arlLoad=null, arlLoadError=null;
+  const ARL_DAY=86400000;
+  const isoStamp=iso=>Date.parse(iso+'T00:00:00Z');
+  function loadArlDaily(){
+    if(arlDaily)return Promise.resolve(arlDaily);
+    if(arlLoad)return arlLoad;
+    arlLoadError=null;
+    arlLoad=fetch('./cleaned_data.csv').then(response=>{
+      if(!response.ok)throw new Error('CSV request failed (HTTP '+response.status+')');
+      return response.text();
+    }).then(text=>{
+      // The project's cleaned_data.csv has a fixed, unquoted 10-column schema.
+      const lines=text.replace(/^\uFEFF/,'').trim().split(/\r?\n/);
+      const fields=lines[0].split(',');
+      const col=Object.fromEntries(fields.map((key,i)=>[key.trim(),i]));
+      for(const k of ['Code','Date','Arrival','Departure','Total'])if(!(k in col))throw new Error('Missing data column: '+k);
+      const by=Object.fromEntries(Array.from({length:8},(_,i)=>['A'+(i+1),[]]));
+      for(let i=1;i<lines.length;i++){
+        const v=lines[i].split(',');
+        const code=(v[col.Code]||'').trim().toUpperCase();
+        if(!(code in by))continue;
+        const date=(v[col.Date]||'').trim();
+        const arrival=Number(v[col.Arrival]),departure=Number(v[col.Departure]),total=Number(v[col.Total]);
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(total)||arrival<0||departure<0||arrival+departure!==total)throw new Error('Invalid cleaned data, row '+(i+1));
+        by[code].push({date,ts:isoStamp(date),v:total,arrival,departure});
+      }
+      for(const code of Object.keys(by)){
+        by[code].sort((a,b)=>a.ts-b.ts);
+        if(!by[code].length)throw new Error('No Airport Rail Link records for '+code);
+      }
+      arlDaily=by;arlLoadError=null;return by;
+    }).catch(error=>{arlLoadError=error.message||String(error);arlLoad=null;return null});
+    return arlLoad;
+  }
   function clamp(v){const r=initial.h/initial.w;v.w=Math.min(initial.w*1.04,Math.max(145,v.w));v.h=v.w*r;const px=v.w*.13,py=v.h*.13;v.x=Math.max(initial.x-px,Math.min(initial.x+initial.w-v.w+px,v.x));v.y=Math.max(initial.y-py,Math.min(initial.y+initial.h-v.h+py,v.y));return v}
   function setView(v){view=clamp({...v});svg.setAttribute('viewBox',`${view.x} ${view.y} ${view.w} ${view.h}`)}
   function animateTo(dest){if(raf)cancelAnimationFrame(raf);dest=clamp({...dest});if(matchMedia('(prefers-reduced-motion: reduce)').matches){setView(dest);return}const start={...view},stamp=performance.now();let last=-Infinity;
@@ -252,13 +315,29 @@
   function showHalo(st,active){if(halo)halo.remove();halo=el('circle',{cx:st.x,cy:st.y,r:active?25:21,class:active?'activeHalo focusedHalo':'activeHalo'});svg.appendChild(halo)}
   function clearSelection(withAnimation=false){selected=null;focused=false;body.classList.remove('panel-open');timeline.classList.add('hidden');$('selectionChip').classList.add('hidden');$('stationInput').value='';if(halo){halo.remove();halo=null}if(withAnimation)animateTo(initial);note('Station deselected · network view')}
   function choose(st){if(selected&&selected.code===st.code){openStation(st);return}selected=st;focused=false;body.classList.remove('panel-open');$('selectionName').textContent=st.name+' · '+st.code;$('selectionChip').classList.remove('hidden');showHalo(st,false);note(st.name+' selected. Click again or View history.');}
-  function openStation(st){selected=st;focused=true;body.classList.add('panel-open');timeline.classList.remove('hidden');$('selectionChip').classList.add('hidden');$('stationHeading').textContent=st.name;$('detailStage').textContent='Station history';$('stageLabel').textContent='Focused';$('openHistory').classList.add('hidden');$('stationMeta').textContent=isReal()?'Siam BTS · 2023 official + 2022/2024 illustrative':'Station '+st.code+' · illustrative data only';$('dataStatus').textContent=isReal()?'● 2023 VERIFIED · OTHER YEARS DEMO':'◌ DEMO DATA ONLY';$('dataStatus').style.color=isReal()?'#64d8b7':'#dbb7a5';
-    $('stationSource').innerHTML=isReal()?'Siam 2023: <strong>official monthly totals</strong> from Bangkok Metropolitan Administration Table 2-7. <a href="'+SIAM_SOURCE+'" target="_blank" rel="noopener">Source ↗</a>. 2022 and 2024 are <strong>simulated</strong> for UX evaluation; not valid for research conclusions.':'<strong>Demonstration only:</strong> all values are simulated for this station. Official station-level data has not been connected.';
-    $('timelineHint').textContent=isReal()?'2023 is verified. 2022 and 2024 are simulated, marked separately. Daily and weekly are unavailable for Siam.':'All dates and counts are illustrative. Change the focus window or the time level to test the controls.';
-    for(const b of document.querySelectorAll('#timeTabs button'))b.disabled=isReal()&&['day','week'].includes(b.dataset.grain);
-    if(isReal()&&(grain==='day'||grain==='week'))grain='month';
+  function openStation(st){
+    selected=st;focused=true;body.classList.add('panel-open');timeline.classList.remove('hidden');$('selectionChip').classList.add('hidden');
+    $('stationHeading').textContent=st.name;$('detailStage').textContent='Station history';$('stageLabel').textContent='Focused';$('openHistory').classList.add('hidden');
+    const arl=arlCode(st);
+    $('allRailData').classList.toggle('hidden',!arl);
+    windowMonths=arl?12:36;
+    $('focusPosition').max=arl?'50':'35';$('focusPosition').value=arl?'50':'35';
+    $('focusSizes').querySelectorAll('button').forEach(b=>b.classList.toggle('active',Number(b.dataset.window)===windowMonths));
+    $('focusTickStart').textContent='Jan 2022';$('focusTickMiddle').textContent=arl?'Jan 2024':'Jan 2023';$('focusTickEnd').textContent=arl?'Mar 2026':'Dec 2024';
+    $('stationMeta').textContent=arl?('Airport Rail Link '+arl+' · daily arrivals + departures · Jan 2022–Mar 2026'):(isReal()?'Siam BTS · 2023 official + 2022/2024 illustrative':'Station '+st.code+' · illustrative data only');
+    $('dataStatus').textContent=arl?'● DRT CLEANED DAILY DATA':(isReal()?'● 2023 VERIFIED · OTHER YEARS DEMO':'◌ DEMO DATA ONLY');
+    $('dataStatus').style.color=(arl||isReal())?'#64d8b7':'#dbb7a5';
+    $('stationSource').innerHTML=arl?
+      'Daily counts from <a href="cleaned_data.csv">cleaned DRT dataset ↗</a> (A1–A8). Totals = <strong>arrivals + departures</strong>, not unique trips. The cleaning process removed 14 zero-report dates per station and shifted 16 duplicate-date rows across the source; <strong>these assumptions need verification</strong>. <a href="drt2566_02.csv">Original DRT CSV ↗</a>.' :
+      (isReal()?'Siam 2023: <strong>official monthly totals</strong> from Bangkok Metropolitan Administration Table 2-7. <a href="'+SIAM_SOURCE+'" target="_blank" rel="noopener">Source ↗</a>. 2022 and 2024 are <strong>simulated</strong> for UX evaluation; not valid for research conclusions.':'<strong>Demonstration only:</strong> all values are simulated for this station. Official station-level data has not been connected.');
+    $('timelineHint').textContent=arl?'The month slider chooses the period. Switch Month / Week / Day / Year to change the aggregation; missing report days are excluded, not shown as zero.':(isReal()?'2023 is verified. 2022 and 2024 are simulated, marked separately. Daily and weekly are unavailable for Siam.':'All dates and counts are illustrative. Change the focus window or the time level to test the controls.');
+    for(const b of document.querySelectorAll('#timeTabs button'))b.disabled=!arl&&isReal()&&['day','week'].includes(b.dataset.grain);
+    if(!arl&&isReal()&&(grain==='day'||grain==='week'))grain='month';
+    if(arl)grain='month';
     document.querySelectorAll('#timeTabs button').forEach(b=>b.classList.toggle('active',b.dataset.grain===grain));
-    const w=300,centerOffset=120,h=w*initial.h/initial.w;const x=st.x-w/2+centerOffset;animateTo({x,y:st.y-h/2,w,h});drawTimeline();
+    const w=300,centerOffset=120,h=w*initial.h/initial.w;const x=st.x-w/2+centerOffset;animateTo({x,y:st.y-h/2,w,h});
+    drawTimeline();
+    if(arl)loadArlDaily().then(()=>{if(focused&&arlCode()===arl)drawTimeline()});
     if(window.matchMedia('(max-width:800px)').matches){
       document.activeElement?.blur?.();
       window.setTimeout(()=>side.scrollIntoView({behavior:'smooth',block:'start'}),80);
@@ -282,9 +361,11 @@
     layer.appendChild(hit);
   });
   svg.replaceChildren(raster,layer);
+  // One interchange pin is named N2-A8 on the map, while the DRT data uses A8.
+  if(lookup.has('N2-A8'))lookup.set('A8',lookup.get('N2-A8'));
   // Prefer the known station code for an unambiguous find.
   for(const st of lookup.values())if(!st.name.startsWith('Station ')){const o=document.createElement('option');o.value=st.name+' ('+st.code+')';$('stationList').appendChild(o)}
-  $('findForm').addEventListener('submit',e=>{e.preventDefault();const q=$('stationInput').value.trim().toLowerCase();const st=[...lookup.values()].find(s=>q===s.code.toLowerCase()||q===s.name.toLowerCase()||q.includes('('+s.code.toLowerCase()+')')||s.name.toLowerCase().includes(q));if(st)openStation(st);else note('Try Siam, CEN, A6, E4 or BL22.')});
+  $('findForm').addEventListener('submit',e=>{e.preventDefault();const q=$('stationInput').value.trim().toLowerCase();const st=lookup.get(q.toUpperCase())||[...lookup.values()].find(s=>q===s.code.toLowerCase()||q===s.name.toLowerCase()||q.includes('('+s.code.toLowerCase()+')')||s.name.toLowerCase().includes(q));if(st)openStation(st);else note('Try Siam, CEN, A6, E4 or BL22.')});
   document.querySelectorAll('[data-station]').forEach(btn=>btn.addEventListener('click',()=>{const st=lookup.get(btn.dataset.station);if(st)choose(st)}));
   document.querySelectorAll('[data-station-launch]').forEach(btn=>btn.addEventListener('click',()=>{
     const st=lookup.get(btn.dataset.stationLaunch);if(st)openStation(st);
@@ -338,7 +419,100 @@
    const n=grain==='week'?120:180;const seed=selected?selected.code.length*97:500;return Array.from({length:n},(_,i)=>({i,date:new Date(Date.UTC(2022,0,1+(grain==='week'?i*7:i))),v:Math.round((1100+seed)*(1+.15*Math.sin(i*.4))*(1+i*.002)),real:false})); }
   function annualPoints(months){return Array.from({length:3},(_,y)=>{const slice=months.slice(y*12,y*12+12);return {i:y,date:new Date(Date.UTC(2022+y,0,1)),v:slice.reduce((a,b)=>a+b.v,0),real:slice.every(d=>d.real),sourceMonths:slice}})}
   function formatMonth(d){return d.toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'})}
-  function drawTimeline(){if(!selected||!focused)return;const months=datapoints();const year=grain==='year';const points=year?annualPoints(months):months;
+  function utcDateLabel(iso){return new Date(isoStamp(iso)).toLocaleDateString('en-US',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}
+  function monthKeys(first,last){
+    const keys=[], a=first.split('-').map(Number),z=last.split('-').map(Number);
+    for(let y=a[0],m=a[1];y<z[0]||(y===z[0]&&m<=z[1]);m++){if(m>12){y++;m=1}keys.push(y+'-'+String(m).padStart(2,'0'))}
+    return keys;
+  }
+  function drawRailTimeline(){
+    const code=arlCode(),plot=$('timeSvg'),chartStatus=$('chartStatus');
+    const railData=arlDaily&&arlDaily[code];
+    if(!railData){
+      chartStatus.textContent=arlLoadError?'[DATA FILE ERROR]':'[LOADING DRT DATA]';chartStatus.classList.remove('verified');
+      $('demoTotal').textContent='—';$('demoAvg').textContent='—';
+      $('totalCaption').textContent='Recorded passenger movements';$('averageCaption').textContent='Average per recorded day';
+      $('timeLabel').textContent='Jan 2022 – Mar 2026';$('focusText').textContent='Jan 2022 – Mar 2026';$('scrubberValue').textContent='Mar 2026';
+      plot.replaceChildren();const label=el('text',{x:220,y:85,'text-anchor':'middle',fill:'#acd6d0','font-size':12});
+      label.textContent=arlLoadError?'Could not load cleaned_data.csv':'Loading real daily station records…';plot.appendChild(label);
+      $('timelineHint').textContent=arlLoadError?'Could not read cleaned_data.csv. It must be in the same GitHub folder as index.html. '+arlLoadError:'Reading cleaned_data.csv (2.1 MB) from this site…';
+      return;
+    }
+    const months=monthKeys(railData[0].date.slice(0,7),railData[railData.length-1].date.slice(0,7));
+    const pos=$('focusPosition');pos.max=String(months.length-1);
+    let end=Math.min(months.length-1,Math.max(0,Number(pos.value)||0)),start=Math.max(0,end-windowMonths+1);
+    const firstMonth=months[start],lastMonth=months[end];
+    const range=railData.filter(d=>d.date.slice(0,7)>=firstMonth&&d.date.slice(0,7)<=lastMonth);
+    if(!range.length)return;
+    const sum=range.reduce((a,r)=>a+r.v,0),sumArrivals=range.reduce((a,r)=>a+r.arrival,0),sumDepartures=sum-sumArrivals;
+    const [sy,sm]=firstMonth.split('-').map(Number),[ey,em]=lastMonth.split('-').map(Number);
+    const observedDays=(Date.UTC(ey,em,1)-Date.UTC(sy,sm-1,1))/ARL_DAY;
+    const missing=Math.max(0,observedDays-range.length);
+    $('demoTotal').textContent=sum.toLocaleString('en-US');
+    $('demoAvg').textContent=Math.round(sum/range.length).toLocaleString('en-US');
+    $('totalCaption').textContent='Passenger movements · arrivals + departures';
+    $('averageCaption').textContent='Average per recorded day';
+    const startLabel=formatMonth(new Date(isoStamp(firstMonth+'-01'))),endLabel=formatMonth(new Date(isoStamp(lastMonth+'-01')));
+    $('focusText').textContent=startLabel+' – '+endLabel;
+    $('scrubberValue').textContent=endLabel;
+    $('timeLabel').textContent=range.length.toLocaleString('en-US')+' observed days · '+startLabel+' – '+endLabel;
+    chartStatus.textContent='[DRT CLEANED · REAL COUNTS]';chartStatus.classList.add('verified');
+    $('timelineHint').textContent=range.length.toLocaleString('en-US')+' recorded days · '+missing+' omitted/unreported days · '+sumArrivals.toLocaleString('en-US')+' arrivals + '+sumDepartures.toLocaleString('en-US')+' departures. These are passenger movements, not distinct trips.';
+    const groups=new Map();
+    for(const r of range){
+      let key;
+      if(grain==='day')key=r.date;
+      else if(grain==='month')key=r.date.slice(0,7);
+      else if(grain==='year')key=r.date.slice(0,4);
+      else{const wd=new Date(r.ts).getUTCDay();key=new Date(r.ts-((wd+6)%7)*ARL_DAY).toISOString().slice(0,10)}
+      if(!groups.has(key))groups.set(key,{key,v:0,a:0,d:0,n:0});
+      const g=groups.get(key);g.v+=r.v;g.a+=r.arrival;g.d+=r.departure;g.n++;
+    }
+    const points=[...groups.values()].sort((a,b)=>a.key.localeCompare(b.key));
+    plot.replaceChildren();plot.setAttribute('viewBox','0 0 440 176');
+    plot.setAttribute('aria-label','Real Airport Rail Link station passenger movements in '+grain+' periods, '+startLabel+' to '+endLabel);
+    const left=38,right=429,top=18,bottom=142,n=points.length;
+    const hi=Math.max(1,...points.map(p=>p.v)),lo=Math.min(...points.map(p=>p.v));
+    const max=hi*1.10,min=Math.max(0,lo-(hi-lo)*.15);
+    const X=i=>left+(right-left)*(i/Math.max(1,n-1)),Y=v=>top+(max-v)/Math.max(1,max-min)*(bottom-top);
+    for(let i=0;i<4;i++){
+      const y=top+i*(bottom-top)/3;
+      plot.appendChild(el('line',{x1:left,x2:right,y1:y,y2:y,stroke:'#2c4a56','stroke-width':1}));
+      const value=el('text',{x:32,y:y+3,'text-anchor':'end',fill:'#8eacb4','font-size':9});
+      const v=max-i*(max-min)/3;value.textContent=Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:1}).format(v);plot.appendChild(value);
+    }
+    let d='';
+    for(let i=0;i<points.length;i++){
+      const p=points[i],prev=points[i-1];
+      let gap=false;
+      if(prev&&grain==='day')gap=isoStamp(p.key)-isoStamp(prev.key)>ARL_DAY;
+      if(prev&&grain==='week')gap=isoStamp(p.key)-isoStamp(prev.key)>7*ARL_DAY;
+      d+=(i===0||gap?'M':'L')+X(i).toFixed(2)+' '+Y(p.v).toFixed(2)+' ';
+    }
+    plot.appendChild(el('path',{d,fill:'none',stroke:'#60dbb8','stroke-width':2.4,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    const tooltip=el('text',{x:220,y:12,'text-anchor':'middle',fill:'#d2f8ec','font-size':9});plot.appendChild(tooltip);
+    function tooltipLabel(p){
+      if(grain==='year')return p.key;
+      if(grain==='month')return formatMonth(new Date(isoStamp(p.key+'-01')));
+      return (grain==='week'?'Week of ':'')+utcDateLabel(p.key);
+    }
+    const stride=Math.max(1,Math.ceil(points.length/46));
+    points.forEach((p,i)=>{
+      if(i%stride!==0&&i!==points.length-1)return;
+      const label=tooltipLabel(p),circle=el('circle',{cx:X(i),cy:Y(p.v),r:points.length>100?2.2:3.4,fill:'#60dbb8',stroke:'#1c6d60','stroke-width':1,tabindex:0,role:'button','aria-label':label+' '+p.v+' arrivals plus departures ('+p.n+' recorded days)'});
+      const show=()=>{tooltip.textContent=label+' · '+p.v.toLocaleString('en-US')+' movements'};
+      circle.addEventListener('mouseenter',show);circle.addEventListener('focus',show);circle.addEventListener('click',show);plot.appendChild(circle);
+      const tt=el('title');tt.textContent=label+' — '+p.v.toLocaleString('en-US')+' arrivals + departures, '+p.n+' days';circle.appendChild(tt);
+    });
+    const tickIndices=[0,Math.floor((n-1)/3),Math.floor(2*(n-1)/3),n-1];
+    const ticks=[...new Set(tickIndices)];
+    ticks.forEach((i,j)=>{
+      const tick=el('text',{x:X(i),y:167,fill:'#89aab0','font-size':9,'text-anchor':j===0?'start':j===ticks.length-1?'end':'middle'});
+      const p=points[i];tick.textContent=grain==='year'?p.key:(grain==='month'?formatMonth(new Date(isoStamp(p.key+'-01'))):new Date(isoStamp(p.key)).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'2-digit',timeZone:'UTC'}));plot.appendChild(tick);
+    });
+  }
+  
+  function drawTimeline(){if(!selected||!focused)return;if(isARL())return drawRailTimeline();const months=datapoints();const year=grain==='year';const points=year?annualPoints(months):months;
    const totalMonths=months.length;
    const pos=$('focusPosition');pos.max=String(totalMonths-1);let end=Math.min(totalMonths-1,Math.max(0,Number(pos.value)||0));let start=Math.max(0,end-windowMonths+1);
    const selectedMonths=months.slice(start,end+1);const sum=selectedMonths.reduce((t,d)=>t+d.v,0);
